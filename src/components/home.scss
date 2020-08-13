@@ -1,0 +1,229 @@
+@import "./../variables.scss";
+.App {
+  background-color: $dark-lilla;
+}
+
+.articles {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+}
+
+.card {
+  &__container {
+    width: 70rem;
+    min-width: 70rem;
+    height: 24.5rem;
+    display: flex;
+    margin: 5rem;
+    background-color: rgba($color: #609e9b, $alpha: 1);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: $base-purple;
+  }
+
+  &__texts {
+    padding-left: 5rem;
+    padding-top: 3rem;
+    & h1 {
+      color: $soft-grey;
+      font-size: 2.6rem !important;
+    }
+    & span {
+      font-size: 2.6rem !important;
+    }
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  &__description {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  &__image {
+    height: 24.5rem;
+    width: 25.5rem;
+    object-fit: cover;
+  }
+}
+
+.cardSmall {
+  &__container {
+    width: 25rem;
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    margin: 5rem;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: $base-purple;
+  }
+
+  &__texts {
+    padding: 1.5rem 1.8rem;
+
+    & span {
+      font-size: 2.2rem !important;
+    }
+    & p {
+      font-size: 2.2rem !important;
+    }
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  &__description {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  &__image {
+    height: 25rem;
+    width: 25rem;
+    object-fit: cover;
+  }
+}
+
+// SHOW DETAIL ARTICLE
+
+.article {
+  margin-top: 3rem !important;
+  h1 {
+    text-transform: uppercase;
+    margin-bottom: 5rem;
+  }
+
+  &__image-container {
+    width: 100%;
+    background-color: $soft-grey;
+    display: flex;
+
+    .container-medium {
+      display: flex;
+    }
+
+    img {
+      width: 54rem;
+    }
+  }
+  &__infos {
+    display: inline-block;
+    margin-left: 2rem;
+    align-self: flex-start;
+    margin-top: 1rem;
+
+    p {
+      margin-bottom: 1.2rem;
+    }
+
+    &__title {
+      font-size: 16px;
+      font-weight: 300;
+      color: $base-grey;
+      margin-bottom: 0.3rem !important;
+    }
+  }
+
+  &__body {
+    margin-top: 7rem;
+    word-break: break-all;
+    hr {
+      margin: 5rem 0;
+    }
+  }
+
+  &__comments {
+  }
+
+  &__new-comment {
+    &__container {
+      margin-bottom: 5rem;
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    &__button {
+      margin-top: 2rem;
+      align-self: flex-end;
+      width: 20rem;
+    }
+    &__input {
+      width: 100%;
+      height: 10.5rem;
+      border-radius: 4px;
+      border: solid 1px $base-grey;
+      background-color: $base-white;
+      vertical-align: top;
+      position: relative;
+    }
+  }
+}
+
+.comment {
+  &__header {
+    background-color: #c5c5c598;
+    border-radius: 3px;
+    padding: 0 2rem;
+    display: flex;
+    height: 3.8rem;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+
+    h4 {
+      align-self: center;
+      font-weight: 300;
+      color: $soft-grey;
+      font-size: 1.4rem;
+      font-style: italic;
+      span {
+        color: $light-grey;
+        font-weight: 500;
+      }
+    }
+  }
+  &__body {
+    margin-bottom: 5rem;
+  }
+}
+
+input.submitButton {
+  display: block;
+  padding: 1.55em 1.5em;
+  border: 0.1em solid #ffffff;
+  margin: 2rem auto 18rem auto;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: $base-lilla;
+  width: 100%;
+  max-width: 90rem;
+}
+
+input.submitButton:hover {
+  color: $base-black;
+  background-color: #ffffff;
+  cursor: pointer;
+  border: 0.2em solid $base-lilla;
+}
+
+@media all and (max-width: 30em) {
+  input.submitButton {
+    display: block;
+    margin: 0.4em auto;
+  }
+}
