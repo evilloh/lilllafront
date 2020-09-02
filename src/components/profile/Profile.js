@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import AuthService from "../../services/auth.service";
 import ProfileArticle from "./Article";
@@ -17,6 +17,7 @@ export default function Profile(props) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [section, setSection] = useState("profile");
+  const [user, setUser] = useState("");
 
   const handleChangePassword = (data) => {
     setLoading(true);
@@ -81,7 +82,11 @@ export default function Profile(props) {
           </p>
         </div>
         <div className="profile__body__main">
-          {section === "articles" && <ProfileArticle></ProfileArticle>}
+          {section === "articles" && (
+            <ProfileArticle
+              username={AuthService.getCurrentUser().username}
+            ></ProfileArticle>
+          )}
           {section === "profile" && (
             <div>
               <div>

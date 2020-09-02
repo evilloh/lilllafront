@@ -5,6 +5,7 @@ import Comment from "./Comment";
 import axios from "axios";
 import { Editor } from "@tinymce/tinymce-react";
 import AuthService from "../../services/auth.service";
+import moment from "moment";
 const TINY_API = process.env.REACT_APP_TINY_API;
 const DEV_API = process.env.REACT_APP_DEV_API;
 
@@ -18,6 +19,7 @@ function EditArticle(props) {
     author: "",
     imgUrl: "",
     errors: "",
+    createdAt: "",
     comments: [],
   });
   const [commentField, setCommentField] = useState("");
@@ -45,6 +47,7 @@ function EditArticle(props) {
           tagList: articles.tagList,
           author: articles.author,
           imgUrl: articles.imgUrl,
+          createdAt: articles.createdAt,
         });
       })
       .catch((res) => {
@@ -79,8 +82,7 @@ function EditArticle(props) {
     setCommentField(content);
     console.log("Content was updated:", commentField);
   };
-
-  console.log(article.body);
+  const date = moment(article.createdAt).format("LLL");
   return (
     <React.Fragment>
       <div className="container-medium article">
@@ -94,9 +96,13 @@ function EditArticle(props) {
           <img src={article.imgUrl}></img>
           <div className="article__infos">
             <p className="article__infos__title">Published by:</p>
-            <p>Federaico</p>
+            <p className="article__infos__desc">{article.author}</p>
             <p className="article__infos__title">On date:</p>
-            <p>21 jan 2019</p>
+            <p className="article__infos__desc">{date}</p>
+            <p
+              className="article__infos__desc"
+              dangerouslySetInnerHTML={{ __html: article.description }}
+            ></p>
           </div>
         </article>
       </section>

@@ -12,7 +12,9 @@ function AddArticle(props) {
   const [body, setBody] = useState("");
   const [errors, setErrors] = useState({ errors: {} });
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [urlImage, setUrlImage] = useState("");
+  const [tags, setTags] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -29,9 +31,14 @@ function AddArticle(props) {
       return;
     }
     const tokenino = JSON.parse(localStorage.getItem("user"));
+
+    const tagList = tags.split(",");
+
     const newArticle = {
+      tagList,
       title,
       body,
+      description,
       author: AuthService.getCurrentUser().username,
       imgUrl: urlImage,
     };
@@ -59,7 +66,10 @@ function AddArticle(props) {
 
     // Clear State
     setTitle("");
+    setDescription("");
     setBody("");
+    setUrlImage("");
+
     setErrors({});
   };
 
@@ -69,6 +79,9 @@ function AddArticle(props) {
   };
   const handleTitleChange = (content, editor) => {
     setTitle(content);
+  };
+  const handleDescriptionChange = (content, editor) => {
+    setDescription(content);
   };
 
   return (
@@ -101,6 +114,32 @@ function AddArticle(props) {
               outputFormat="html"
             />
           </div>
+          <div
+            className="addarticle__input--title"
+            style={{ marginTop: "2rem" }}
+          >
+            <Editor
+              style={{ margin: "20px" }}
+              apiKey={TINY_API}
+              inline={true}
+              initialValue="Your max 150 char description here"
+              init={{
+                height: 220,
+                menubar: false,
+                plugins: [
+                  // "advlist autolink lists link image charmap print preview anchor",
+                  // "searchreplace visualblocks code fullscreen",
+                  // "insertdatetime media table paste code help wordcount",
+                ],
+                toolbar:
+                  "undo redo | fontsizeselect  fontselect| bold italic  | \
+              \
+              |removeformat |",
+              }}
+              onEditorChange={handleDescriptionChange}
+              outputFormat="html"
+            />
+          </div>
           <input
             name="imgUrl"
             value={urlImage}
@@ -128,6 +167,13 @@ function AddArticle(props) {
               outputFormat="html"
             />
           </div>
+          <input
+            name="tagsList"
+            value={tags}
+            className="addarticle__input--image"
+            placeholder="Put your tags here, separated by a ',' and no space (ex: casa,cose,cose casa,chiesa) "
+            onChange={(e) => setTags(e.target.value)}
+          ></input>
           <input
             type="submit"
             value="Submit Article"

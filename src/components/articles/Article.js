@@ -47,7 +47,10 @@ function Article(props) {
           />
         </h4>
         {isTop ? (
-          <h4 className={`${cardClass}__description`}>{description}</h4>
+          <h4
+            className={`${cardClass}__description`}
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></h4>
         ) : null}
       </div>
       {author === props.currentUser && (

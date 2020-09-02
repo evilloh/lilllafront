@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import ArticleSum from "./ArticleSum";
 
 export default function ProfileArticle(props) {
+  const DEV_API = process.env.REACT_APP_DEV_API;
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    getArticles();
+  }, []);
+
+  const getArticles = () => {
+    axios
+      .get(DEV_API + `/articles/getByUser/${props.username}`)
+      .then((res) => {
+        setArticles(res.data.articles);
+      })
+      .catch((res) => {
+        console.log("We couldnt retrieve your Articles");
+      });
+  };
   return (
     <div className="profile__article">
-      <div className="profile__article__content">
-        <p>Titolo</p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-          volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-          ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-          molestie consequat,{" "}
-        </p>
-      </div>
-      <div className="profile__article__data">
-        <p>
-          Date: <span>20/10/2022</span>
-        </p>
-        <p>
-          Comments: <span>12</span>
-        </p>
-        <p>
-          Favorites: <span>3</span>
-        </p>
-      </div>
+      {articles ? (
+        articles.map((article, index) => (
+          <ArticleSum
+            key={index}
+            article={article}
+            getArticles={getArticles}
+          ></ArticleSum>
+        ))
+      ) : (
+        <p>You don't have any article duuuude</p>
+      )}
     </div>
   );
 }

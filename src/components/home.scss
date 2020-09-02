@@ -130,6 +130,17 @@
       font-weight: 300;
       color: $base-grey;
       margin-bottom: 0.3rem !important;
+      font-weight: bold;
+    }
+    &__desc {
+      font-size: 16px;
+      font-weight: 300;
+      color: $base-grey;
+      margin-bottom: 0.3rem !important;
+      &:last-child {
+        margin-top: 2.5rem;
+        font-style: italic;
+      }
     }
   }
 
@@ -212,9 +223,26 @@ input.submitButton {
   background-color: $base-lilla;
   width: 100%;
   max-width: 90rem;
+  &--small {
+    display: block;
+    padding: 1.1em 1.5em;
+    border: 0.1em solid #ffffff;
+    margin: 2rem auto 18rem auto;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: $base-lilla;
+    width: 10rem;
+  }
 }
 
-input.submitButton:hover {
+input.submitButton:hover,
+input.submitButton--small:hover {
   color: $base-black;
   background-color: #ffffff;
   cursor: pointer;
