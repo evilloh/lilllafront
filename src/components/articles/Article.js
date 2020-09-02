@@ -55,16 +55,6 @@ function Article(props) {
       </div>
       {author === props.currentUser && (
         <div>
-          <i
-            onClick={() => setArticleInfo(!articleInfo)}
-            className="fas fa-sort-down"
-            style={{ cursor: "pointer" }}
-          />
-          <i
-            className="fas fa-times"
-            style={{ cursor: "pointer", float: "right", color: "red" }}
-            onClick={() => onDeleteClick(_id)}
-          />
           <Link to={{ pathname: `article/edit/${_id}` }}>
             <i
               className="fas fa-pencil-alt"
@@ -73,16 +63,10 @@ function Article(props) {
                 float: "right",
                 color: "black",
                 marginRight: "1rem",
+                paddingBottom: "1rem",
               }}
             />
           </Link>
-
-          {articleInfo ? (
-            <ul className="list-group">
-              <li className="list-group-item">Email:</li>
-              <li className="list-group-item">Phone:</li>
-            </ul>
-          ) : null}
         </div>
       )}
     </div>
