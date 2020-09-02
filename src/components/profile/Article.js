@@ -5,6 +5,7 @@ import ArticleSum from "./ArticleSum";
 export default function ProfileArticle(props) {
   const DEV_API = process.env.REACT_APP_DEV_API;
   const [articles, setArticles] = useState([]);
+
   useEffect(() => {
     getArticles();
   }, []);

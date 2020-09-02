@@ -69,7 +69,6 @@ function AddArticle(props) {
     setDescription("");
     setBody("");
     setUrlImage("");
-
     setErrors({});
   };
 
